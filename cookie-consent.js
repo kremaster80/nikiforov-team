@@ -24,7 +24,7 @@
   }
 
   function startMetrika() {
-    if (metrikaStarted || !/^\\d{5,12}$/.test(METRIKA_ID)) return;
+    if (metrikaStarted || !/^\d{5,12}$/.test(METRIKA_ID)) return;
     metrikaStarted = true;
     (function (m, e, t, r, i, k, a) {
       m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
