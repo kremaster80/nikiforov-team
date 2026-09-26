@@ -59,7 +59,7 @@
   preferences.forEach(btn => btn.addEventListener("click", openPreferences));
 
   const saved = readChoice();
-  banner.hidden = saved === "accepted" || saved === "rejected";
+  banner.hidden = (saved === "accepted" || saved === "rejected") && new URLSearchParams(window.location.search).get("cookie-settings") !== "1";
   if (saved === "accepted") startMetrika();
   window.addEventListener("storage", event => {
     if (event.key !== STORAGE_KEY) return;
