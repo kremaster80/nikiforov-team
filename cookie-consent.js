@@ -59,7 +59,17 @@
   preferences.forEach(btn => btn.addEventListener("click", openPreferences));
 
   const saved = readChoice();
-  banner.hidden = (saved === "accepted" || saved === "rejected") && new URLSearchParams(window.location.search).get("cookie-settings") !== "1";
+  const showPreferences = new URLSearchParams(window.location.search).get("cookie-settings") === "1";
+  banner.hidden = (saved === "accepted" || saved === "rejected") && !showPreferences;
+  // A one-time preview link is useful for review; remove the flag so the banner
+  // does not reappear on every reload once the visitor saves a preference.
+  if (showPreferences) {
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("cookie-settings");
+      window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+    } catch (_) { /* File preview/private browser: keep the banner usable. */ }
+  }
   if (saved === "accepted") startMetrika();
   window.addEventListener("storage", event => {
     if (event.key !== STORAGE_KEY) return;
