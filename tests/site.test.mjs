@@ -6,8 +6,10 @@ const html = read('index.html');
 const cookie = read('cookie-consent.js');
 
 test('Telegram: navigation and intro copy are exact', () => {
-  assert.match(html, /<a href="#questions">Что решает проект\?<\/a>/);
-  assert.match(html, /<h2>Что решает<br><span>проект\?<\/span><\/h2>/);
+  assert.match(html, /<a href="#questions">Проект<\/a>/);
+  assert.match(html, /<h2>Направления работы<br><span>в проекте<\/span><\/h2>/);
+  assert.match(html, /01 \/ ЦЕЛИ/);
+  assert.match(html, /<h2>Тарифы индивидуального<br><span>ведения с тренером<\/span><\/h2>/);
   assert.match(html, /Листайте карточки вправо\. Для каждой задачи будет собственный кейс «до \/ после»\./);
   assert.doesNotMatch(html, /отдельная точка входа в проект/i);
 });
@@ -16,13 +18,13 @@ test('Telegram: all seven goal cards have the approved wording', () => {
   const matches = [...html.matchAll(/<article class="goal">([\s\S]*?)<\/article>/g)];
   assert.equal(matches.length, 7);
   const required = [
-    ['Хотите похудеть', 'без жёстких ограничений'],
+    ['Желаете похудеть', 'без жёстких ограничений'],
     ['Набрать мышечную массу', 'питание и восстановление для вашего максимального прогресса'],
     ['Улучшить пропорции и качество тела', 'рекомпозиции с сохранением мышечной массы'],
     ['Научиться правильно тренироваться', 'усвоении технических нюансов'],
     ['Разобраться с питанием', 'Тонкости питания и подсчёта КБЖУ'],
     ['Перебороть плато', 'с учётом анатомических особенностей'],
-    ['Подготовка к сцене', 'соревнованиях по бодибилдингу']
+    ['Подготовиться к сцене', 'соревнованиях по бодибилдингу']
   ];
   for (let i = 0; i < required.length; i++) {
     assert.ok(matches[i][1].includes('<h3>' + required[i][0] + '</h3>'), 'Card ' + (i + 1) + ' title');
@@ -34,7 +36,7 @@ test('Telegram: all seven goal cards have the approved wording', () => {
 test('Telegram: tariff labels and description match the requested edits', () => {
   assert.match(html, /<h3>Полный формат<\/h3>/);
   assert.match(html, /<h3>Самостоятельный формат<\/h3>/);
-  assert.match(html, /Основа проекта одна\. Отличаются плотность контакта с тренером и частота разбора технических нюансов\./);
+  assert.match(html, /Основа проекта одна\. Отличия в плотности контакта с тренером и в частоте разбора технических нюансов\./);
   assert.doesNotMatch(html, /глубина постоянного контроля/);
 });
 
