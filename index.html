@@ -10,7 +10,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080b0f;--surface:#0d1217;--surface2:#111820;--line:#22303b;--line2:#31424f;--text:#f7f9fb;--muted:#9aa7b1;--muted2:#6c7983;--blue:#66c8ff;--blue2:#b8eaff;--shell:min(1380px,calc(100vw - 72px));--r:28px}
+:root{
+  --bg:#08110f;
+  --bg-soft:#0e1816;
+  --panel:#101d1a;
+  --panel-2:#142420;
+  --text:#f3fbf8;
+  --muted:#9fb5af;
+  --blue:#8de7d1;
+  --blue-strong:#6edcc3;
+  --blue-soft:#cff8ef;
+  --line:#21332d;
+  --line-strong:#335148;
+  --shell:min(100% - 56px,1240px);
+  --r:28px;
+}
 *{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--bg)}body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,Arial,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit}.shell{width:var(--shell);margin-inline:auto}::selection{background:var(--blue);color:#071019}
 .topbar{position:fixed;z-index:100;top:18px;left:50%;translate:-50% 0;width:var(--shell);height:66px;padding:0 14px 0 18px;border:1px solid rgba(255,255,255,.09);border-radius:18px;background:rgba(8,11,15,.82);backdrop-filter:blur(22px);display:flex;align-items:center;justify-content:space-between;box-shadow:0 18px 54px rgba(0,0,0,.2)}
 .brand{text-decoration:none;display:flex;align-items:center;gap:11px}.brand-mark{width:36px;height:36px;border:1px solid rgba(102,200,255,.7);border-radius:10px;display:grid;place-items:center;color:var(--blue);font:700 10px Unbounded}.brand-name{font:600 11px Unbounded;letter-spacing:.08em}.nav{display:flex;align-items:center;gap:24px}.nav a{text-decoration:none;font-size:12px;font-weight:700;color:#aab4bd}.nav a:hover{color:#fff}.btn{min-height:48px;padding:0 19px;border-radius:12px;border:1px solid var(--blue);display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:var(--blue);color:#071019;font-weight:800;font-size:12px;transition:.2s}.btn:hover{transform:translateY(-2px);box-shadow:0 16px 42px rgba(102,200,255,.16)}.btn.ghost{background:transparent;color:#fff;border-color:#34444f}.btn.ghost:hover{border-color:var(--blue);color:var(--blue);box-shadow:none}
@@ -125,7 +139,7 @@
 </section>
 
 <section id="questions" class="section shell">
-  <div class="section-head reveal"><div><div class="section-index">01 / ПРОЕКТ РЕШАЕТ</div><h2>Что решает<br><span>проект?</span></h2></div><p>Листайте карточки вправо. Для каждой задачи будет собственный кейс «до / после».</p></div>
+  <div class="section-head reveal"><div><div class="section-index">01 / ПРОЕКТ РЕШАЕТ </div><h2>Что решает<br><span>проект?</span></h2></div><p>Листайте карточки вправо. Для каждой задачи будет собственный кейс «до / после».</p></div>
   <div class="goals-wrap reveal"><div class="goals" id="goals">
     <article class="goal"><div class="goal-media"><span class="before">ДО</span><span class="after">ПОСЛЕ</span></div><div class="goal-body"><span class="goal-num">01</span><h3>Желаете похудеть</h3><p>Выстраиваем тренировки и питание под снижение веса без жёстких ограничений.</p><a class="btn" href="https://t.me/OZNikiforovTeam" target="_blank" rel="noopener">Записаться</a></div></article>
     <article class="goal"><div class="goal-media"><span class="before">ДО</span><span class="after">ПОСЛЕ</span></div><div class="goal-body"><span class="goal-num">02</span><h3>Набрать мышечную массу</h3><p>Выстраиваем тренировочную систему, питание и восстановление для вашего максимального прогресса!</p><a class="btn" href="https://t.me/OZNikiforovTeam" target="_blank" rel="noopener">Записаться</a></div></article>
