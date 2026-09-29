@@ -68,9 +68,19 @@ test('Responsive navigation is present', () => {
 
 test('Aqua theme: load only visual overrides after inline layout CSS', () => {
   assert.match(html, /<\/style>\s*<link rel="stylesheet" href="\.\/aqua-overrides\.css">/);
-  assert.match(aqua, /\/\* Soft aqua redesign \*\//);
+  assert.match(aqua, /\/\* Soft sky-blue redesign \*\//);
   assert.match(aqua, /\.cookie-banner\s*\{/);
   assert.match(aqua, /\.mobile-cta\s*\{/);
   assert.doesNotMatch(aqua, /^:root\s*\{/m, 'Legacy root/theme CSS must not be reloaded');
   assert.doesNotMatch(aqua, /\.portrait-wrap\s*\{/, 'Old-page portrait layout must not be reloaded');
+});
+
+
+test('Sky-blue palette is consistent across base and override styles', () => {
+  assert.match(html, /--blue:#78c9f2;/);
+  assert.match(html, /--blue-strong:#50b2e8;/);
+  assert.match(html, /--blue-soft:#d7f1ff;/);
+  assert.match(aqua, /rgba\(120,201,242,/);
+  assert.match(aqua, /rgba\(80,178,232,/);
+  assert.doesNotMatch(aqua, /rgba\(141,231,209,|rgba\(110,220,195,/);
 });
