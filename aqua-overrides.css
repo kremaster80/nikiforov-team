@@ -1,23 +1,23 @@
-/* Visual-only aqua theme overrides. Base layout stays in index.html. */
-/* Soft aqua redesign */
+/* Visual-only sky-blue theme overrides. Base layout stays in index.html. */
+/* Soft sky-blue redesign */
 body{
   background:
-    radial-gradient(circle at top right, rgba(141,231,209,.08), transparent 26%),
-    radial-gradient(circle at top left, rgba(110,220,195,.05), transparent 22%),
+    radial-gradient(circle at top right, rgba(120,201,242,.08), transparent 26%),
+    radial-gradient(circle at top left, rgba(80,178,232,.05), transparent 22%),
     var(--bg);
   color:var(--text);
 }
 
 .topbar{
-  background:rgba(10, 18, 16, .78);
-  border-color:rgba(141,231,209,.14);
+  background:rgba(9, 18, 29, .78);
+  border-color:rgba(120,201,242,.14);
   backdrop-filter:blur(14px);
 }
 
 .brand-mark{
   background:linear-gradient(135deg, var(--blue) 0%, var(--blue-strong) 100%);
-  color:#07110f;
-  box-shadow:0 0 22px rgba(141,231,209,.28);
+  color:#08131d;
+  box-shadow:0 0 22px rgba(120,201,242,.28);
 }
 
 .nav a:hover,
@@ -29,29 +29,29 @@ body{
 
 .btn{
   background:linear-gradient(135deg, var(--blue) 0%, var(--blue-strong) 100%);
-  color:#07110f;
-  box-shadow:0 14px 40px rgba(110,220,195,.22);
+  color:#08131d;
+  box-shadow:0 14px 40px rgba(80,178,232,.22);
 }
 
 .btn:hover{
   transform:translateY(-1px);
-  box-shadow:0 18px 46px rgba(110,220,195,.28);
+  box-shadow:0 18px 46px rgba(80,178,232,.28);
 }
 
 .btn.ghost{
   background:transparent;
   color:var(--text);
-  border:1px solid rgba(141,231,209,.26);
+  border:1px solid rgba(120,201,242,.26);
 }
 
 .btn.ghost:hover{
-  border-color:rgba(141,231,209,.45);
-  background:rgba(141,231,209,.05);
+  border-color:rgba(120,201,242,.45);
+  background:rgba(120,201,242,.05);
 }
 
 .eyebrow i{
   background:var(--blue);
-  box-shadow:0 0 20px rgba(141,231,209,.6);
+  box-shadow:0 0 20px rgba(120,201,242,.6);
 }
 
 .section-index,
@@ -67,47 +67,47 @@ body{
 .benefit,
 .cookie-banner,
 .topbar{
-  border-color:rgba(141,231,209,.12);
+  border-color:rgba(120,201,242,.12);
 }
 
 .goal{
-  background:linear-gradient(180deg, rgba(15,25,22,.98) 0%, rgba(10,17,15,.98) 100%);
+  background:linear-gradient(180deg, rgba(12,24,35,.98) 0%, rgba(9,17,27,.98) 100%);
 }
 
 .tariff{
   background:
-    radial-gradient(circle at 100% 0, rgba(141,231,209,.12), transparent 36%),
-    #0d1614;
-  border-color:rgba(141,231,209,.22);
+    radial-gradient(circle at 100% 0, rgba(120,201,242,.12), transparent 36%),
+    #0d1b28;
+  border-color:rgba(120,201,242,.22);
 }
 
 .tariff-price .price-period{
-  color:#a9c9c0;
+  color:#a7c9dc;
 }
 
 .benefit{
-  border-color:rgba(141,231,209,.12);
+  border-color:rgba(120,201,242,.12);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
 }
 
 .split-card{
-  background:rgba(7, 14, 12, .9);
+  background:rgba(8, 16, 25, .9);
 }
 
 .split-card.alt{
-  background:rgba(18, 31, 27, .76);
+  background:rgba(15, 31, 44, .76);
 }
 
 .project-name span,
 .section-head h2 span,
 .final h2 span{
   color:var(--blue);
-  text-shadow:0 0 26px rgba(141,231,209,.18);
+  text-shadow:0 0 26px rgba(120,201,242,.18);
 }
 
 .cookie-banner{
-  background:#101b18;
-  border:1px solid rgba(141,231,209,.2);
+  background:#101f2e;
+  border:1px solid rgba(120,201,242,.2);
 }
 
 .cookie-banner a{
@@ -116,23 +116,23 @@ body{
 
 .cookie-actions button{
   background:linear-gradient(135deg, var(--blue) 0%, var(--blue-strong) 100%);
-  color:#07110f;
+  color:#08131d;
   border-color:transparent;
 }
 
 .cookie-actions button.cookie-reject{
   background:transparent;
   color:var(--text);
-  border-color:rgba(141,231,209,.22);
+  border-color:rgba(120,201,242,.22);
 }
 
 .footer{
-  border-top:1px solid rgba(141,231,209,.12);
-  color:#8ea59f;
+  border-top:1px solid rgba(120,201,242,.12);
+  color:#91aabb;
 }
 
 .mobile-cta{
   background:linear-gradient(135deg, var(--blue) 0%, var(--blue-strong) 100%);
-  color:#07110f;
-  box-shadow:0 14px 50px rgba(110,220,195,.24);
+  color:#08131d;
+  box-shadow:0 14px 50px rgba(80,178,232,.24);
 }
