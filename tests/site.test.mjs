@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const html = read('index.html');
 const cookie = read('cookie-consent.js');
+const aqua = read('aqua-overrides.css');
 
 test('Telegram: navigation and intro copy are exact', () => {
   assert.match(html, /<a href="#questions">Проект<\/a>/);
@@ -62,4 +63,14 @@ test('Cookie: analytics stays disabled until user approval and real counter ID',
 test('Responsive navigation is present', () => {
   assert.match(html, /id="menu-toggle" aria-controls="main-nav" aria-expanded="false"/);
   assert.match(html, /mainNav\.classList\.toggle\('is-open'\)/);
+});
+
+
+test('Aqua theme: load only visual overrides after inline layout CSS', () => {
+  assert.match(html, /<\/style>\s*<link rel="stylesheet" href="\.\/aqua-overrides\.css">/);
+  assert.match(aqua, /\/\* Soft aqua redesign \*\//);
+  assert.match(aqua, /\.cookie-banner\s*\{/);
+  assert.match(aqua, /\.mobile-cta\s*\{/);
+  assert.doesNotMatch(aqua, /^:root\s*\{/m, 'Legacy root/theme CSS must not be reloaded');
+  assert.doesNotMatch(aqua, /\.portrait-wrap\s*\{/, 'Old-page portrait layout must not be reloaded');
 });
