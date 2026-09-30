@@ -133,11 +133,15 @@ body{
   box-shadow:none;
 }
 .benefit:before{
+  width:52%;
+  right:-4%;
   filter:grayscale(1) brightness(.18) contrast(1.6);
   opacity:.80;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 18%,#000 48%,#000 100%);
+  mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 18%,#000 48%,#000 100%);
 }
 .benefit:after{
-  background:linear-gradient(90deg,rgba(242,242,242,.97) 0%,rgba(219,219,219,.94) 54%,rgba(176,176,176,.42) 100%);
+  background:linear-gradient(90deg,rgba(242,242,242,.97) 0%,rgba(230,230,230,.95) 46%,rgba(205,205,205,.72) 72%,rgba(176,176,176,.36) 100%);
 }
 .benefit-number{
   border-color:rgba(0,0,0,.24);
@@ -190,7 +194,98 @@ body{
 
 @media(max-width:700px){
   .topbar{background:rgba(7,7,7,.94)}
+  .benefit:before{
+    width:82%;
+    right:-30%;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.24) 20%,#000 52%,#000 100%);
+    mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.24) 20%,#000 52%,#000 100%);
+  }
   .benefit:after{
-    background:linear-gradient(90deg,rgba(240,240,240,.98) 0%,rgba(215,215,215,.95) 64%,rgba(169,169,169,.55) 100%);
+    background:linear-gradient(90deg,rgba(240,240,240,.98) 0%,rgba(226,226,226,.96) 52%,rgba(198,198,198,.74) 76%,rgba(169,169,169,.44) 100%);
+  }
+}
+
+
+/* Replace long "sad" rules with a lighter monochrome rhythm. */
+.tariffs,
+.final,
+.footer{
+  position:relative;
+}
+.tariffs{
+  border-top:0;
+  border-bottom:0;
+  background:
+    radial-gradient(680px 240px at 50% 0,rgba(255,255,255,.045),transparent 70%),
+    #080808;
+}
+.final,
+.footer{
+  border-top:0;
+}
+
+/* Short fading dash fields: visible enough to structure the page, but not a hard rule. */
+.tariffs::before,
+.tariffs::after,
+.final::before,
+.footer::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  width:min(760px,72vw);
+  height:8px;
+  transform:translateX(-50%);
+  pointer-events:none;
+  opacity:.52;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 9px,
+      #3a3a3a 9px 11px,
+      transparent 11px 20px
+    );
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);
+}
+.tariffs::before{top:0}
+.tariffs::after{bottom:0}
+.final::before,
+.footer::before{top:0}
+
+/* Give section numbers a small visual rhythm instead of a written label. */
+.section-index{
+  position:relative;
+  overflow:visible;
+}
+.section-index::after{
+  content:"";
+  width:3px;
+  height:3px;
+  margin-left:11px;
+  border-radius:50%;
+  background:#666;
+  box-shadow:8px 0 #444,16px 0 #2e2e2e;
+}
+
+/* Cards stay crisp; reduce the feeling of a page made only from outlines. */
+.goal,
+.tariff{
+  box-shadow:0 18px 48px rgba(0,0,0,.18);
+}
+.goal:hover,
+.tariff:hover{
+  border-color:#3b3b3b;
+}
+.benefit{
+  box-shadow:0 28px 70px rgba(0,0,0,.18);
+}
+
+@media(max-width:700px){
+  .tariffs::before,
+  .tariffs::after,
+  .final::before,
+  .footer::before{
+    width:70vw;
+    opacity:.40;
   }
 }
