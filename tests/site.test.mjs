@@ -120,4 +120,6 @@ test('Monochrome rhythm replaces hard section rules', () => {
   assert.match(mono, /repeating-linear-gradient/);
   assert.match(mono, /\.section-index::after/);
   assert.match(mono, /box-shadow:8px 0 #444,16px 0 #2e2e2e/);
+  assert.match(mono, /\.benefit:before\{[\s\S]*mask-image:linear-gradient/);
 });
+
