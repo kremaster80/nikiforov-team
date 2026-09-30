@@ -194,3 +194,88 @@ body{
     background:linear-gradient(90deg,rgba(240,240,240,.98) 0%,rgba(215,215,215,.95) 64%,rgba(169,169,169,.55) 100%);
   }
 }
+
+
+/* Replace long "sad" rules with a lighter monochrome rhythm. */
+.tariffs,
+.final,
+.footer{
+  position:relative;
+}
+.tariffs{
+  border-top:0;
+  border-bottom:0;
+  background:
+    radial-gradient(680px 240px at 50% 0,rgba(255,255,255,.045),transparent 70%),
+    #080808;
+}
+.final,
+.footer{
+  border-top:0;
+}
+
+/* Short fading dash fields: visible enough to structure the page, but not a hard rule. */
+.tariffs::before,
+.tariffs::after,
+.final::before,
+.footer::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  width:min(760px,72vw);
+  height:8px;
+  transform:translateX(-50%);
+  pointer-events:none;
+  opacity:.52;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 9px,
+      #3a3a3a 9px 11px,
+      transparent 11px 20px
+    );
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);
+}
+.tariffs::before{top:0}
+.tariffs::after{bottom:0}
+.final::before,
+.footer::before{top:0}
+
+/* Give section numbers a small visual rhythm instead of a written label. */
+.section-index{
+  position:relative;
+  overflow:visible;
+}
+.section-index::after{
+  content:"";
+  width:3px;
+  height:3px;
+  margin-left:11px;
+  border-radius:50%;
+  background:#666;
+  box-shadow:8px 0 #444,16px 0 #2e2e2e;
+}
+
+/* Cards stay crisp; reduce the feeling of a page made only from outlines. */
+.goal,
+.tariff{
+  box-shadow:0 18px 48px rgba(0,0,0,.18);
+}
+.goal:hover,
+.tariff:hover{
+  border-color:#3b3b3b;
+}
+.benefit{
+  box-shadow:0 28px 70px rgba(0,0,0,.18);
+}
+
+@media(max-width:700px){
+  .tariffs::before,
+  .tariffs::after,
+  .final::before,
+  .footer::before{
+    width:70vw;
+    opacity:.40;
+  }
+}
