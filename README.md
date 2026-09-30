@@ -12,7 +12,7 @@
 - Адаптивная мобильная версия и sticky CTA.
 
 ## GitHub Pages
-В корне репозитория должны лежать `index.html`, `styles.css`, `app.js` и папка `assets`.
+В корне репозитория должны лежать `index.html`, `monochrome-overrides.css`, `cookie-consent.js`, юридические HTML-страницы и папка `assets`. `styles.css` сохранён как legacy-файл и к текущей странице не подключается.
 
 ```bash
 git add .
