@@ -4,12 +4,15 @@ import { readFileSync } from 'node:fs';
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const html = read('index.html');
 const cookie = read('cookie-consent.js');
-const aqua = read('aqua-overrides.css');
+const mono = read('monochrome-overrides.css');
 
 test('Telegram: navigation and intro copy are exact', () => {
   assert.match(html, /<a href="#questions">Проект<\/a>/);
   assert.match(html, /<h2>Направления работы<br><span>в проекте<\/span><\/h2>/);
-  assert.match(html, /01 \/ ЦЕЛИ/);
+  const sectionMarkers = [...html.matchAll(/<div class="section-index">([^<]+)<\/div>/g)].map(m => m[1]);
+  assert.deepEqual(sectionMarkers, ['01', '02', '03']);
+  assert.doesNotMatch(html, /01 \/|02 \/|03 \/);
+  assert.doesNotMatch(html, /<span class="benefit-kicker">/);
   assert.match(html, /<h2>Тарифы индивидуального<br><span>ведения с тренером<\/span><\/h2>/);
   assert.match(html, /Листайте карточки вправо\. Для каждой задачи будет собственный кейс «до \/ после»\./);
   assert.doesNotMatch(html, /отдельная точка входа в проект/i);
@@ -41,6 +44,15 @@ test('Telegram: tariff labels and description match the requested edits', () => 
   assert.doesNotMatch(html, /глубина постоянного контроля/);
 });
 
+test('Telegram Sep 30: benefit comparison copy is updated', () => {
+  assert.match(html, /Отчёт и работа с тренером — 1 раз в 7 дней \(день недели выбираете по договорённости\)\./);
+  assert.equal((html.match(/Корректировка тренировочного протокола и рабочих весов — 1 раз в 7 дней\./g) || []).length, 2);
+  assert.match(html, /Тренер разбирает все видео с ваших тренировок регулярно в режиме 6\/1\./);
+  assert.match(html, /Тренер разбирает 10 видеоотчётов в неделю\./);
+  assert.match(html, /Корректировка выполняется в рамках еженедельной консультации\./);
+  assert.match(html, /Больше обратной связи от тренера, чтобы вы всегда были в ресурсе\. Обратная связь — 1 раз в неделю\./);
+});
+
 test('Cookie: banner, choice controls, settings and policy links are integrated', () => {
   assert.match(html, /data-cookie-banner hidden/);
   assert.match(html, /data-cookie-choice="accept"/);
@@ -66,21 +78,30 @@ test('Responsive navigation is present', () => {
 });
 
 
-test('Aqua theme: load only visual overrides after inline layout CSS', () => {
-  assert.match(html, /<\/style>\s*<link rel="stylesheet" href="\.\/aqua-overrides\.css">/);
-  assert.match(aqua, /\/\* Soft sky-blue redesign \*\//);
-  assert.match(aqua, /\.cookie-banner\s*\{/);
-  assert.match(aqua, /\.mobile-cta\s*\{/);
-  assert.doesNotMatch(aqua, /^:root\s*\{/m, 'Legacy root/theme CSS must not be reloaded');
-  assert.doesNotMatch(aqua, /\.portrait-wrap\s*\{/, 'Old-page portrait layout must not be reloaded');
+test('Monochrome theme: load only visual overrides after inline layout CSS', () => {
+  assert.match(html, /<\/style>\s*<link rel="stylesheet" href="\.\/monochrome-overrides\.css">/);
+  assert.match(mono, /\/\* Strict monochrome visual layer\./);
+  assert.match(mono, /\.cookie-banner\s*\{/);
+  assert.match(mono, /\.mobile-cta\s*\{/);
+  assert.doesNotMatch(mono, /^:root\s*\{/m, 'Legacy root/theme CSS must not be reloaded');
+  assert.doesNotMatch(mono, /\.portrait-wrap\s*\{/, 'Old-page portrait layout must not be reloaded');
 });
 
+test('Monochrome palette has no blue accent tokens', () => {
+  assert.match(html, /--bg:#050505;/);
+  assert.match(html, /--blue:#f5f5f5;/);
+  assert.match(html, /--blue-strong:#dedede;/);
+  assert.match(html, /--blue-soft:#ffffff;/);
+  assert.doesNotMatch(html, /#78c9f2|#50b2e8|#d7f1ff/i);
+  assert.doesNotMatch(mono, /rgba\(120,201,242|rgba\(80,178,232|#78c9f2|#50b2e8/i);
 
-test('Sky-blue palette is consistent across base and override styles', () => {
-  assert.match(html, /--blue:#78c9f2;/);
-  assert.match(html, /--blue-strong:#50b2e8;/);
-  assert.match(html, /--blue-soft:#d7f1ff;/);
-  assert.match(aqua, /rgba\(120,201,242,/);
-  assert.match(aqua, /rgba\(80,178,232,/);
-  assert.doesNotMatch(aqua, /rgba\(141,231,209,|rgba\(110,220,195,/);
+  const inlineCss = html.match(/<style>([\s\S]*?)<\/style>/)?.[1] || '';
+  const chromaticHex = [...inlineCss.matchAll(/#([0-9a-f]{6})\b/gi)].filter(([, h]) => {
+    const r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16);
+    return r !== g || g !== b;
+  });
+  const chromaticRgb = [...inlineCss.matchAll(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/gi)]
+    .filter(([, r, g, b]) => r !== g || g !== b);
+  assert.equal(chromaticHex.length, 0);
+  assert.equal(chromaticRgb.length, 0);
 });
