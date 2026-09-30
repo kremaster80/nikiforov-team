@@ -12,6 +12,7 @@ test('Telegram: navigation and intro copy are exact', () => {
   const sectionMarkers = [...html.matchAll(/<div class="section-index">([^<]+)<\/div>/g)].map(m => m[1]);
   assert.deepEqual(sectionMarkers, ['01', '02', '03']);
   assert.doesNotMatch(html, /01 \/|02 \/|03 \/);
+  assert.doesNotMatch(html, /<span class="benefit-kicker">/);
   assert.match(html, /<h2>Тарифы индивидуального<br><span>ведения с тренером<\/span><\/h2>/);
   assert.match(html, /Листайте карточки вправо\. Для каждой задачи будет собственный кейс «до \/ после»\./);
   assert.doesNotMatch(html, /отдельная точка входа в проект/i);
@@ -93,4 +94,14 @@ test('Monochrome palette has no blue accent tokens', () => {
   assert.match(html, /--blue-soft:#ffffff;/);
   assert.doesNotMatch(html, /#78c9f2|#50b2e8|#d7f1ff/i);
   assert.doesNotMatch(mono, /rgba\(120,201,242|rgba\(80,178,232|#78c9f2|#50b2e8/i);
+
+  const inlineCss = html.match(/<style>([\s\S]*?)<\/style>/)?.[1] || '';
+  const chromaticHex = [...inlineCss.matchAll(/#([0-9a-f]{6})\b/gi)].filter(([, h]) => {
+    const r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16);
+    return r !== g || g !== b;
+  });
+  const chromaticRgb = [...inlineCss.matchAll(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/gi)]
+    .filter(([, r, g, b]) => r !== g || g !== b);
+  assert.equal(chromaticHex.length, 0);
+  assert.equal(chromaticRgb.length, 0);
 });
