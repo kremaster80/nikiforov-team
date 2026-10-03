@@ -98,7 +98,7 @@
 .hero-copy>p{color:#efefef;max-width:620px;text-shadow:0 1px 20px rgba(0,0,0,.35)}
 .hero-visual{position:absolute;inset:0;z-index:0;width:100%;height:100%;min-height:0;pointer-events:none;overflow:hidden}
 .hero-visual .portrait{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:0;background:#121212}
-.hero-visual .portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:70% 28%;transform:none;filter:saturate(.8) contrast(1.03)}
+.hero-visual .portrait img{display:block;width:100%;height:100%;object-fit:contain;object-position:100% 20%;transform:none;filter:saturate(.8) contrast(1.03)}
 .hero-visual .portrait:after{
   content:"";position:absolute;inset:0;
   background:linear-gradient(90deg,rgba(9,9,9,.97) 0%,rgba(9,9,9,.91) 24%,rgba(9,9,9,.68) 44%,rgba(9,9,9,.24) 75%,rgba(9,9,9,.08) 100%),
@@ -110,7 +110,7 @@
 @media(max-width:1050px){
   .hero.shell{min-height:850px;padding:145px max(22px,calc((100% - var(--shell))/2)) 100px}
   .hero-copy{width:min(650px,72%)}
-  .hero-visual .portrait img{object-position:65% 25%}
+  .hero-visual .portrait img{object-position:100% 25%}
   .hero-visual .portrait:after{background:linear-gradient(90deg,rgba(9,9,9,.96) 0%,rgba(9,9,9,.82) 39%,rgba(9,9,9,.29) 100%),linear-gradient(0deg,rgba(7,7,7,.73),transparent 48%)}
 }
 @media(max-width:700px){
@@ -118,7 +118,7 @@
   .hero-copy{width:100%;max-width:100%;padding:0}
   .hero-copy .project-name{font-size:clamp(42px,11.8vw,65px);line-height:.94}
   .hero-copy>p{font-size:14px;line-height:1.65;color:#f3f3f3;max-width:520px}
-  .hero-visual .portrait img{object-position:57% center}
+  .hero-visual .portrait img{object-fit:cover;object-position:57% center}
   .hero-visual .portrait:after{background:linear-gradient(0deg,rgba(7,7,7,.98) 0%,rgba(7,7,7,.89) 27%,rgba(7,7,7,.43) 57%,rgba(7,7,7,.24) 100%),linear-gradient(90deg,rgba(7,7,7,.43),transparent 82%)}
   .hero-visual .portrait-caption{display:none}
   .hero-actions .btn{width:100%}
