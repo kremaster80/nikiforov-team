@@ -129,6 +129,13 @@
 @media(max-width:700px){.tariffs .section-head h2{font-size:clamp(28px,7.6vw,40px)}}
 </style>
 <link rel="stylesheet" href="./monochrome-overrides.css">
+<style>
+.goal-media{background:#d8d6d2}
+.goal-media img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.goal-media:before,.goal-media:after{display:none}
+.before,.after{color:#4d4d4d;text-shadow:0 1px 8px rgba(255,255,255,.7)}
+.after{color:#111}
+</style>
 </head>
 <body style="--dmitry:url('./assets/dmitry-hero.webp')">
 <header class="topbar"><a class="brand" href="#top"><span class="brand-mark">NT</span><span class="brand-name">NIKIFOROV TEAM</span></a><nav class="nav" id="main-nav" aria-label="Основная навигация"><a href="#questions">Проект</a><a href="#tariffs">Тарифы</a></nav><button type="button" class="menu-toggle" id="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Открыть меню"><span></span><span></span><span></span></button><a class="btn" href="https://t.me/OZNikiforovTeam" target="_blank" rel="noopener">Записаться</a></header>
@@ -198,4 +205,22 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMainNav
 <div class="cookie-actions"><button type="button" class="cookie-reject" data-cookie-choice="reject">Только необходимые</button><button type="button" data-cookie-choice="accept">Разрешить аналитику</button></div>
 </aside>
 <script defer src="./cookie-consent.js"></script>
+<script>
+const goalImages = [
+  ['weight-loss.png', 'Силуэт снижения веса'],
+  ['muscle-gain.png', 'Силуэт набора мышечной массы'],
+  ['body-proportions.png', 'Силуэт улучшения пропорций тела'],
+  ['training-technique.png', 'Силуэт тренировки с правильной техникой'],
+  ['nutrition.png', 'Силуэт осознанного питания'],
+  ['progress.png', 'Последовательный прогресс в тренировках'],
+  ['stage-preparation.png', 'Силуэт подготовки к сцене']
+];
+document.querySelectorAll('.goal-media').forEach((media, index) => {
+  const [file, alt] = goalImages[index];
+  const image = new Image();
+  image.src = `./assets/goals/${file}`;
+  image.alt = alt;
+  media.prepend(image);
+});
+</script>
 </body></html>
