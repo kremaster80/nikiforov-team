@@ -135,6 +135,10 @@
 .goal-media:before,.goal-media:after{display:none}
 .before,.after{color:#4d4d4d;text-shadow:0 1px 8px rgba(255,255,255,.7)}
 .after{color:#111}
+.footer-social{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.footer-social a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:8px 13px;border:1px solid #343434;border-radius:10px;color:#d9d9d9;font-size:11px;font-weight:700;text-decoration:none;transition:background .2s,border-color .2s,color .2s}
+.footer-social a:hover,.footer-social a:focus-visible{background:#1d1d1d;border-color:#777;color:#fff}
+@media(max-width:640px){.footer-social{width:100%;gap:7px}.footer-social a{flex:1 1 auto}.footer .legal-links{order:3}}
 </style>
 </head>
 <body style="--dmitry:url('./assets/dmitry-hero.webp')">
@@ -185,7 +189,7 @@
 
 <section class="shell final reveal"><div><div class="eyebrow"><i></i>НАБОР ОТКРЫТ</div><h2>Выберите формат<br><span>ведения.</span></h2><p>Если сомневаетесь, какой вариант подходит вам — напишите в отдел заботы.</p></div><a class="btn" href="https://t.me/OZNikiforovTeam" target="_blank" rel="noopener">Записаться в проект</a></section>
 </main>
-<footer class="footer shell"><a class="brand" href="#top"><span class="brand-mark">NT</span><span class="brand-name">NIKIFOROV TEAM</span></a><span>© 2026</span><nav class="legal-links" aria-label="Юридическая информация"><a href="./privacy.html">Политика конфиденциальности</a><a href="./consent.html">Согласие на обработку данных</a><a href="./cookies.html">Cookie</a><button type="button" data-cookie-settings>Настроить cookie</button></nav><a href="https://t.me/OZNikiforovTeam" target="_blank" rel="noopener">@OZNikiforovTeam</a></footer>
+<footer class="footer shell"><a class="brand" href="#top"><span class="brand-mark">NT</span><span class="brand-name">NIKIFOROV TEAM</span></a><span>© 2026</span><nav class="footer-social" aria-label="Социальные сети Никифоров тим"><a href="https://www.youtube.com/@Nikiforov_team" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://www.instagram.com/nikiforov_team_ifbb/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://t.me/nikiforov_team" target="_blank" rel="noopener noreferrer">Telegram</a></nav><nav class="legal-links" aria-label="Юридическая информация"><a href="./privacy.html">Политика конфиденциальности</a><a href="./consent.html">Согласие на обработку данных</a><a href="./cookies.html">Cookie</a><button type="button" data-cookie-settings>Настроить cookie</button></nav><a href="https://t.me/OZNikiforovTeam" target="_blank" rel="noopener">@OZNikiforovTeam</a></footer>
 <a class="mobile-cta" href="https://t.me/OZNikiforovTeam" target="_blank" rel="noopener">Записаться</a>
 <script>
 const reveal=()=>document.querySelectorAll('.reveal').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight*.9)el.classList.add('in')});reveal();addEventListener('scroll',reveal,{passive:true});
